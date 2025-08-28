@@ -1,0 +1,23 @@
+services:
+  db:
+    container_name: pg-std
+    image: postgres:15
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  adminer:
+    container_name: adminer1
+    image: adminer
+    restart: always
+    ports:
+      - '9090:8080'
+
+volumes:
+  postgres_data:

@@ -57,7 +57,6 @@ export async function createStudent(formData: FormData) {
     return { success: false, message: 'เกิดข้อผิดพลาดขณะบันทึกข้อมูล' };
   }
 }
-
 export async function editStudent(studentId: string, formData: FormData) {
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
@@ -83,7 +82,8 @@ export async function editStudent(studentId: string, formData: FormData) {
       },
     });
 
-    revalidatePath('/students'); // รีเฟรชหน้ารายการนักเรียน
+    revalidatePath('/'); // แก้ไขให้ revalidate หน้าหลัก
+    revalidatePath(`/EditStudentForm/${studentId}`); // revalidate หน้าแก้ไข
     return { success: true, message: 'แก้ไขนักเรียนเรียบร้อยแล้ว' };
   } catch (error: any) {
     if (error.code === 'P2002') {

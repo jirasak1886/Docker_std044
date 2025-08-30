@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   adminer:
-    container_name: adminer1
+    container_name: adminer2
     image: adminer
     restart: always
     ports:

@@ -4,6 +4,10 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+
+// DATABASE_URL="postgresql://postgres:password@localhost:5432/schooldb"
+// NEXTAUTH_SECRET="W3n6GLfVKM25Hl7Q9HDr41qDKpkb1MsVksjR/Aq9zKA"
+// NEXTAUTH_URL="http://localhost:3000"
 generator client {
   provider = "prisma-client-js"
   output   = "../src/generated/prisma"
@@ -24,4 +28,12 @@ model Student {
  createdAt DateTime @default(now())
  updatedAt DateTime @updatedAt
 
+}
+model User {
+ id String @id @default(uuid()) // primary key แบบ UUID ช่วยป้องกันการเดา id ง่ายๆ
+ username String @unique // ชื่อผู้ใช้ต้องไม่ซํ้า
+ password String // เก็บเฉพาะรหัสผ่านที่ 'hash' แล้วเท่านั้น
+ role String @default("user") // "user" หรือ "admin" ใช้สําหรับ RBAC
+ createdAt DateTime @default(now()) // บันทึกเวลาสร้าง
+ updatedAt DateTime @updatedAt // บันทึกเวลาปรับปรุงล่าสุดอัตโนมัติ
 }

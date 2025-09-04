@@ -1,6 +1,6 @@
 services:
   db:
-    container_name: pg-std
+    container_name: pg-std2
     image: postgres:15
     restart: always
     ports:
